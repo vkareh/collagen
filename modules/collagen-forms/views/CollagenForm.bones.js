@@ -97,9 +97,9 @@ view = Backbone.View.extend({
         $('#messages').empty();
     },
     update: function(event) {
-        //*throw new Error('No update method defined');
+        //throw new Error('No update method defined');
     },
     submit: function(event) {
-        //*throw new Error('No submit method defined');
+        //throw new Error('No submit method defined');
     }
 });
