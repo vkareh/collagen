@@ -1,6 +1,6 @@
 // Note: this secret may not depend on the model instance!
 models.User.secret = function() {
-    return Bones.plugin.config.secret || require('crypto').createHash('sha1').digest('hex');
+    return Bones.plugin.config.secret || require('crypto').createHash('sha1').update(new Date().getTime().toString()).digest('hex')
 }
 
 // Default admin data
