@@ -1,6 +1,7 @@
+var secret = Date.now().toString();
 // Note: this secret may not depend on the model instance!
 models.User.secret = function() {
-    return Bones.plugin.config.secret || require('crypto').createHash('sha1').update(new Date().getTime().toString()).digest('hex')
+    return Bones.plugin.config.secret || Collagen.config.secret || secret;
 }
 
 // Default admin data
