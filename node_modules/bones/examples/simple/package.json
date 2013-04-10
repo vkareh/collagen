@@ -1,8 +1,0 @@
-{
-    "name": "simple",
-    "version": "1.0.0",
-    "scripts": {
-        "start": "node index.js",
-        "postinstall": "mkdir node_modules; ln -s ../../../ node_modules/bones"
-    }
-}
