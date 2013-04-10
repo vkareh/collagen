@@ -8,7 +8,8 @@ view = Backbone.View.extend({
     render: function() {
         var messages = '';
         Collagen.messages.forEach(function(message) {
-            messages += templates.CollagenMessage(message);
+            message = new models.CollagenMessage(message);
+            messages += templates.CollagenMessage(message.attributes);
         });
         $('#messages').empty().append(messages);
         return this;
@@ -17,7 +18,7 @@ view = Backbone.View.extend({
     message: function(type, message) {
         if (typeof message === 'undefined') {
             message = type;
-            type = 'info';
+            type = 'standard';
         }
         $('#messages').empty().append(templates.CollagenMessage({
             type: type,

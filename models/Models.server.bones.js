@@ -6,7 +6,8 @@ var sync = function(method, collection, options) {
     var models = [];
     _.each(Collagen.store, function(model, id) {
         model.id = id;
-        models.push(model);
+        model = new collection.model(model);
+        if (model.access('read')) models.push(model);
     });
     options.success(models);
 }

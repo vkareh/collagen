@@ -33,9 +33,3 @@ models.User.prototype.hasRole = function(roles) {
         return _.contains(user.get('roles'), role);
     });
 }
-
-// Determine model access
-// ----------------------
-models.User.prototype.hasAccess = function(model) {
-    return this.isOwner(model) || this.hasRole('admin');
-}

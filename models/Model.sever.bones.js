@@ -3,20 +3,23 @@
 // You will need to override it in your own models.
 var sync = function(method, model, options) {
     Collagen.store = Collagen.store || {};
+
+    // Verify model access
+    if (!model.access(method)) return options.error(new Error('You do not have permission to ' + method + ' this ' + model.constructor.title));
+
     switch (method) {
-        case 'create':
-            if (!model.id) {
-                // Assign attribute hash as the ID
-                var hash = require('crypto').createHash('md5');
-                model.id = hash.update(JSON.stringify(model.attributes)).digest('hex');
-            }
-        case 'update':
-            // Store latest version
-            Collagen.store[model.id] = model.attributes;
-            break;
         case 'read':
             // Read from store
             if (model.id) model.set(Collagen.store[model.id]);
+            break;
+        case 'create':
+            // Assign a user to the model
+            if (!model.get('user')) model.set({user: Collagen.user.get('id')});
+            // Assign attribute hash as the ID
+            if (!model.id) model.id = require('crypto').createHash('md5').update(JSON.stringify(model.attributes)).digest('hex');
+        case 'update':
+            // Store latest version
+            Collagen.store[model.id] = model.attributes;
             break;
         case 'delete':
             // Remove form store
@@ -28,9 +31,34 @@ var sync = function(method, model, options) {
         default:
             return options.error(new Error('An error ocurred with your request.'));
     }
+
     options.success(model);
 }
 
+// Determine user access to a model
+// --------------------------------
+models.Model.prototype.access = function(type, user) {
+    var model = this;
+    if (!user) user = Collagen.user;
+    console.log(user, Collagen);
+    if (!_.contains(['read', 'create', 'update', 'delete'], type)) return false;
+    if (model.permissions[type] === 'all') return true;
+    if (model.permissions[type] === 'owner' && user.isOwner(model)) return true;
+    if (user.hasRole(model.permissions[type])) return true;
+    if (user.hasRole('admin')) return true;
+    return false;
+}
+
+// Define model permissions
+// ------------------------
+models.Model.prototype.permissions = {
+    'read': 'owner',
+    'create': ['authenticated user'],
+    'update': 'owner',
+    'delete': 'owner'
+}
+
+// Assign default `sync` method when necessary
 var register = models.Model.register;
 models.Model.register = function(server) {
     if (this.prototype.sync === undefined) {

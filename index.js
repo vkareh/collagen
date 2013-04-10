@@ -18,10 +18,10 @@ require('./models/Models');
 
 // Load child plugins
 require('./modules/collagen-menu');
-require('./modules/collagen-messages');
-require('./modules/collagen-forms');
 require('./modules/collagen-auth');
 require('./modules/collagen-admin');
+require('./modules/collagen-messages');
+require('./modules/collagen-forms');
 
 require(require('path').join(__dirname, 'app'));
 bones.load(__dirname);
