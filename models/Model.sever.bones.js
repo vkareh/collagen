@@ -52,7 +52,7 @@ models.Model.prototype.access = function(type, user) {
 // Define model permissions
 // ------------------------
 models.Model.prototype.permissions = {
-    'read': 'owner',
+    'read': 'all',
     'create': ['authenticated user'],
     'update': 'owner',
     'delete': 'owner'
