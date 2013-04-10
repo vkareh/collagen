@@ -59,7 +59,7 @@ use-case.
 
 Collagen has several default views:
 
-* `App.bones.js` gives Collagen client-side routing capabilities/
+* `App.bones.js` gives Collagen client-side routing capabilities.
 * `Collagen.bones.js` is the basic top-level view from which you will extend your own. It provides initialization of the `App` view and active menu tracking.
 * `Error.bones.js` is a basic error display page.
 * `Page.bones.js` is a default page renderer that can be used for displaying basic templates that do not need their own complex view.
@@ -154,7 +154,7 @@ web application.
 #### CollagenAuth
 
 Provides a basic user authentication framework with its related components. You
-can implement any number of compatible loging mechanisms and back-end session
+can implement any number of compatible login mechanisms and back-end session
 stores. It also contains basic access control for Backbone models.
 
 #### CollagenForms
