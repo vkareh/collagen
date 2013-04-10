@@ -1,0 +1,1 @@
+router = routers.Collagen.extend({});

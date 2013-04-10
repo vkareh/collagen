@@ -1,0 +1,24 @@
+{
+    "name": "collagen",
+    "description": "Fully-functional node.js web framework using Bones.",
+    "version": "0.0.1",
+    "author": {
+        "name": "Victor Kareh",
+        "url": "http://www.vkareh.net"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/vkareh/collagen.git"
+    },
+    "scripts": {
+        "postinstall": "./postinstall.sh"
+    },
+    "main": "./index.js",
+    "dependencies": {
+        "bones": "git://github.com/vkareh/bones.git",
+        "bones-auth": "git://github.com/developmentseed/bones-auth.git",
+        "express": "2.5.x",
+        "JSV": "4.0.x"
+    },
+    "license": "MIT"
+}

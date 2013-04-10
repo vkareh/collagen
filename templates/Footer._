@@ -1,0 +1,4 @@
+<footer class="container muted">
+    <small>Website powered by <a href="http://collagenjs.org" class="muted">Collagen.js</a></small>
+    <small class="pull-right">&copy; 2013 <a class="muted" href="http://www.vkareh.net">Victor Kareh</a></small>
+</footer>

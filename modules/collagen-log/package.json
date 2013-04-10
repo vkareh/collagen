@@ -1,0 +1,10 @@
+{
+    "name": "collagen-log",
+    "description": "Collagen.js plugin for server-side stream logging",
+    "version": "0.0.1",
+    "author": {
+        "name": "Victor Kareh",
+        "url": "http://www.vkareh.net"
+    },
+    "main": "./index.js"
+}

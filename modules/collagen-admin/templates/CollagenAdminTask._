@@ -1,0 +1,4 @@
+<li class="task">
+    <dt><a href="/admin/<%= path %>"><strong><%= name %></strong></a></dt>
+    <dd><%= description %></dd>
+</li>

@@ -1,0 +1,5 @@
+<ul class="nav nav-<%= menuType %>">
+  <% _.each(menuItems, function(menuItem) { %>
+    <li><a href="<%= menuItem.path %>"<%= menuItem.id ? ' id="' + menuItem.id + '"': '' %>><%= menuItem.label %></a></li>
+  <% }); %>
+</ul>

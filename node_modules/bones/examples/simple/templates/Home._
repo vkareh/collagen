@@ -1,0 +1,9 @@
+<h1>What is Bones?</h1>
+<p>Bones is a helper library that allows you to run the excellent Backbone.js library on your server. This example application is designed to demonstrate how bones works, and introduce you to the other excellent libraries that it uses.</p>
+
+<h2>Excellent Libraries</h2>
+<ul>
+  <% _.each(projects, function(v) { %>
+  <li><a href='/project/<%= v %>'><%= v %></a></li>
+  <% }); %>
+</ul>

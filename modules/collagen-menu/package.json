@@ -1,0 +1,10 @@
+{
+    "name": "collagen-menu",
+    "description": "Collagen.js plugin for pluggable navigation menus",
+    "version": "0.0.1",
+    "author": {
+        "name": "Victor Kareh",
+        "url": "http://www.vkareh.net"
+    },
+    "main": "./index.js"
+}

@@ -1,0 +1,31 @@
+<form action='/' method='post'>
+<% if (id) { %>
+<div>
+    <label>Username</label>
+    <strong><%= id %></strong>
+</div>
+<% } else { %>
+<div>
+    <label for='id'>Username</label>
+    <input type='text' name='id' />
+</div>
+<% } %>
+<div class='inline'>
+    <label for='email'>Email</label>
+    <input type='text' name='email' value='<%= email %>' />
+</div>
+<div>
+    <div class='inline'>
+        <label for='password'>Password</label>
+        <input type='password' name='password' />
+    </div>
+    <div class='inline'>
+        <label for='passwordConfirm'>Confirm</label>
+        <input type='password' name='passwordConfirm' />
+    </div>
+</div>
+<div class='buttons'>
+    <% if (id) { %><input type='submit' value='Save changes' />
+    <% } else { %><input type='submit' value='Create user' /><% } %>
+</div>
+</form>

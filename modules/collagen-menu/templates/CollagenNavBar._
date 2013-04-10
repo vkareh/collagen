@@ -1,0 +1,12 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/"><%= title %></a>
+      <ul class="nav">
+        <% _.each(menuItems, function(menuItem) { %>
+          <li><a href="<%= menuItem.path %>"><%= menuItem.label %></a></li>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
+</div>
