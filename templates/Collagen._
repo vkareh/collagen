@@ -8,11 +8,6 @@
     <% _.each(css, function(file) { %>
         <link rel="stylesheet" href="<%= file %>?<%= version %>" media="<%= /print/.test(file) ? 'print' : 'screen' %>" />
     <% }); %>
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
     <script src="/assets/collagen/js/jquery.min.js?<%= version %>"></script>
     <script src="/assets/collagen/js/bootstrap.min.js?<%= version %>"></script>
     <script src="/assets/bones/all.js?<%= version %>"></script>

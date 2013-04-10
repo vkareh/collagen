@@ -8,6 +8,7 @@ view.prototype.menuItems = [{
 
 view.prototype.render = function() {
     $(this.el).empty().append(templates['CollagenNavBar']({
+        type: Collagen.config ? Collagen.config.navbar : 'static',
         title: Collagen.config ? Collagen.config.name : 'Collagen.js',
         menuItems: _.sortBy(this.menuItems, 'weight')
     }));
