@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p app
 cd app
 mkdir -p {assets,assets/css,assets/images,assets/js,commands,models,routers,servers,templates,views}
 
