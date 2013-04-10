@@ -9,7 +9,8 @@ if [ ! -f collagen.json ]
     then
         echo "{
     \"name\": \"My Collagen.js App\",
-    \"email\": \"email@example.com\"
+    \"email\": \"email@example.com\",
+    \"navbar\": true
 }" > collagen.json
 fi
 if [ ! -f index.js ]
