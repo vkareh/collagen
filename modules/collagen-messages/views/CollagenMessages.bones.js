@@ -15,12 +15,13 @@ view = Backbone.View.extend({
         return this;
     },
     // Display single message
-    message: function(type, message) {
+    message: function(type, message, selector) {
+        selector = selector || '#messages';
         if (typeof message === 'undefined') {
             message = type;
             type = 'standard';
         }
-        $('#messages').empty().append(templates.CollagenMessage({
+        $(selector).empty().append(templates.CollagenMessage({
             type: type,
             message: message
         }));
