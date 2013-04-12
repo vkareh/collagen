@@ -1,14 +1,9 @@
-view = Backbone.View.extend({id: 'main'});
+view = views.View.extend({id: 'main'});
 
-view.prototype.init = function() {
-    if (!this.collagen) {
-        this.collagen = new views.App({model: this});
-    }
+view.prototype.init = _.once(function() {
+    this.collagen = new views.App({model: this});
     return this;
-}
-
-view.prototype.initialize = function() { return this; }
-view.prototype.attach = function() { return this; }
+});
 
 // Scrolls to top or fragment
 // --------------------------

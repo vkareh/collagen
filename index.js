@@ -9,10 +9,10 @@ require('./server/plugin');
 require('./routers/Collagen');
 require('./servers/Collagen');
 require('./views/App');
+require('./views/View');
 require('./views/Collagen');
 require('./views/Page');
 require('./views/Error');
-require('./views/View');
 require('./models/Model');
 require('./models/Models');
 
