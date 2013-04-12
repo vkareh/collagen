@@ -17,10 +17,12 @@ if [ ! -f index.js ]
     then
         echo "var bones = require('bones');
 
-// Add your own modules here...
+// Add modules that need to load before your app here...
 require('../modules/collagen-log');
 
-bones.load(__dirname);" > index.js
+bones.load(__dirname);
+
+// Add modules that will override your app here..." > index.js
 fi
 if [ ! -f package.json ]
     then

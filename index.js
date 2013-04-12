@@ -23,8 +23,8 @@ require('./modules/collagen-admin');
 require('./modules/collagen-messages');
 require('./modules/collagen-forms');
 
-require(require('path').join(__dirname, 'app'));
 bones.load(__dirname);
+require(require('path').join(__dirname, 'app'));
 
 if (!module.parent) {
     bones.start();
