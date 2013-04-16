@@ -2,7 +2,7 @@
 
 mkdir -p app
 cd app
-mkdir -p {assets,assets/css,assets/images,assets/js,commands,models,routers,servers,templates,views}
+mkdir -p {assets,assets/css,assets/img,assets/js,commands,models,routers,servers,templates,views}
 
 # Add main configuration files
 if [ ! -f collagen.json ]

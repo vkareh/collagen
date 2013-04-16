@@ -19,7 +19,7 @@ fs.readdirSync('./app/assets/js').forEach(function(name) {
 });
 
 // Load favicon
-Bones.plugin.favicon = '/assets/collagen/images/favicon.ico';
-if (fs.existsSync('./app/assets/images/favicon.ico')) {
-    Bones.plugin.favicon = path.join('/assets', config.name, 'images/favicon.ico');
+Bones.plugin.favicon = '/assets/collagen/img/favicon.ico';
+if (fs.existsSync('./app/assets/img/favicon.ico')) {
+    Bones.plugin.favicon = path.join('/assets', config.name, 'img/favicon.ico');
 }

@@ -23,12 +23,9 @@ view.prototype.scrollTop = function() {
 
 view.prototype.activeLinks = function() {
     var activePath = window.location.pathname;
-    $('a.active').removeClass('active');
-    $('a.exact').each(function(i, a) {
-        activePath == $(a).attr('href') && $(a).addClass('active');
-    });
-    $('a:not(.exact)').each(function(i, a) {
-        (activePath.indexOf($(a).attr('href')) == 0) && $(a).addClass('active');
+    $('a').parent('li').removeClass('active');
+    $('ul.nav li a').each(function(i, a) {
+        activePath == $(a).attr('href') && $(a).parent('li').addClass('active');
     });
     return this;
 }
