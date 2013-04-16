@@ -23,7 +23,7 @@ view.prototype.scrollTop = function() {
 
 view.prototype.activeLinks = function() {
     var activePath = window.location.pathname;
-    $('a').parent('li').removeClass('active');
+    $('ul.nav li').removeClass('active');
     $('ul.nav li a').each(function(i, a) {
         activePath == $(a).attr('href') && $(a).parent('li').addClass('active');
     });
