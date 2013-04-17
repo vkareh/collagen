@@ -1,25 +1,14 @@
 // Starts routing on client
 // ------------------------
 var start = _.once(function() {
-    var bypass = true,
-        _loadUrl = Backbone.History.prototype.loadUrl;
-
-    Backbone.History.prototype.loadUrl = function(e) {
-        if (bypass) {
-            bypass = false;
-            return;
-        }
-        _loadUrl.call(this, e);
-    }
-
-    Bones.start({pushState: true, root: ""});
+    Bones.start({pushState: true, root: '', silent: true});
 });
 
 // Topmost view
 // ------------
 view = Backbone.View.extend({
     _ensureElement: function() {
-        this.el = $('body');
+        this.setElement('body');
     }
 });
 
@@ -49,6 +38,7 @@ view.prototype.routeClick = function(ev) {
 view.route = function(path) {
     start();
     if (path.charAt(0) === '/') {
+        path = path.substr(1);
         var matched = _.any(Backbone.history.handlers, function(handler) {
             if (handler.route.test(path)) {
                 Backbone.history.navigate(path, true);

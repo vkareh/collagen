@@ -1,6 +1,6 @@
 routers.CollagenAdmin.prototype.routes = {
-    '/admin': 'admin',
-    '/admin/:task': 'admin'
+    'admin': 'admin',
+    'admin/:task': 'admin'
 }
 
 routers.CollagenAdmin.prototype.admin = function(task) {

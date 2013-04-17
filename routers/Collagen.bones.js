@@ -1,7 +1,7 @@
 router = Backbone.Router.extend({});
 
 router.prototype.routes = {
-    '/': 'home'
+    '': 'home'
 }
 
 // Homepage
