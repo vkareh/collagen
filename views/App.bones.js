@@ -1,7 +1,7 @@
 // Starts routing on client
 // ------------------------
 var start = _.once(function() {
-    Bones.start({pushState: true, root: '', silent: true});
+    Bones.start({pushState: true, root: '/', silent: true});
 });
 
 // Topmost view
@@ -41,7 +41,7 @@ view.route = function(path) {
         path = path.substr(1);
         var matched = _.any(Backbone.history.handlers, function(handler) {
             if (handler.route.test(path)) {
-                Backbone.history.navigate(path, true);
+                Backbone.history.navigate(path, {trigger: true});
                 return true;
             }
         });
