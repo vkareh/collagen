@@ -8,8 +8,6 @@
     <% _.each(css, function(file) { %>
         <link rel="stylesheet" href="<%= file %>?<%= version %>" media="<%= /print/.test(file) ? 'print' : 'screen' %>" />
     <% }); %>
-    <script src="/assets/collagen/js/jquery.min.js?<%= version %>"></script>
-    <script src="/assets/collagen/js/bootstrap.min.js?<%= version %>"></script>
     <script src="/assets/bones/all.js?<%= version %>"></script>
     <% _.each(js, function(file) { %>
         <script src="<%= file %>?<%= version %>"></script>
