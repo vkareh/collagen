@@ -1,4 +1,4 @@
-view = Backbone.View.extend({id: 'menu'});
+view = views.View.extend({id: 'menu'});
 
 view.prototype.render = function() {
     $(this.el).empty().append(templates['CollagenMenu']({

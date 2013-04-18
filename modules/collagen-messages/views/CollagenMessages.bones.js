@@ -1,4 +1,4 @@
-view = Backbone.View.extend({
+view = views.View.extend({
     initialize: function() {
         // Allow for global display of messages
         Collagen.message = this.message;

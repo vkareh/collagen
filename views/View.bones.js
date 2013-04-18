@@ -1,8 +1,5 @@
 view = Backbone.View.extend({
-    initialize: function() {
-        return this;
-    },
-    attach: function() {
-        return this;
-    }
+    init: function() { return this; },
+    initialize: function() { return this; },
+    attach: function() { return this; }
 });

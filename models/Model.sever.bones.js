@@ -40,7 +40,6 @@ var sync = function(method, model, options) {
 models.Model.prototype.access = function(type, user) {
     var model = this;
     if (!user) user = Collagen.user;
-    console.log(user, Collagen);
     if (!_.contains(['read', 'create', 'update', 'delete'], type)) return false;
     if (model.permissions[type] === 'all') return true;
     if (model.permissions[type] === 'owner' && user.isOwner(model)) return true;

@@ -1,4 +1,4 @@
-view = Backbone.View.extend({
+view = views.View.extend({
     tagName: 'form',
     initialize: function() {
         this.model = this.model || new models.CollagenForm();
