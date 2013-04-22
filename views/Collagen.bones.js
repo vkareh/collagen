@@ -11,13 +11,8 @@ view.prototype.scrollTop = function() {
     var offset = $(window.location.hash).offset();
     var top = offset ? offset.top : 0;
     // Scroll top FF, IE, Chrome safe
-    if ($('body').scrollTop(0)) {
-        $('body').scrollTop(top);
-        return this;
-    }
-    if ($('html').scrollTop(0)) {
-        $('html').scrollTop(top);
-    }
+    $('body').scrollTop(0) && $('body').scrollTop(top);
+    $('html').scrollTop(0) && $('html').scrollTop(top);
     return this;
 }
 
