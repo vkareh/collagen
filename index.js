@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var path = require('path')
-,   bones = require('bones');
+var bones = require('bones')
+,   path = require('path')
+,   fs = require('fs');
 
 exports.load = bones.load;
 exports.start = bones.start;
@@ -35,5 +36,6 @@ require(path.join(__dirname, 'modules/collagen-admin'));
 require(path.join(__dirname, 'modules/collagen-messages'));
 require(path.join(__dirname, 'modules/collagen-forms'));
 
-// Load application module
-if (!module.parent) require(global.__AppPath__);
+// Start or load application
+if (!fs.existsSync(path.join(global.__AppPath__, 'index.js'))) bones.start();
+else !module.parent && require(global.__AppPath__);

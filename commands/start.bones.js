@@ -1,16 +1,15 @@
 var path = require('path')
 ,   fs = require('fs');
 
-Bones.Command.options['collagen'] = {
+commands['start'].options.collagen = {
     'title': 'collagen=[path]',
     'description': 'Path to Collagen configuration file.',
     'default': function(options, config) {
-        var files = config ? config.files : Bones.Command.options['files'].default();
         return path.join(global.__AppPath__, 'collagen.json');
     }
-};
+}
 
-Bones.Command.augment({
+commands['start'].augment({
     bootstrap: function(parent, plugin, callback) {
         parent.call(this, plugin, function() {
             try {
@@ -18,8 +17,7 @@ Bones.Command.augment({
             } catch (e) {
                 console.error(e);
             }
-
-            callback();
+            callback && callback();
         });
     }
 });

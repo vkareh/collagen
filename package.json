@@ -10,9 +10,6 @@
         "type": "git",
         "url": "http://github.com/vkareh/collagen.git"
     },
-    "scripts": {
-        "postinstall": "./postinstall.sh"
-    },
     "main": "./index.js",
     "dependencies": {
         "bones": "git://github.com/vkareh/bones.git",

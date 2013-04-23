@@ -2,8 +2,13 @@ var fs = require('fs')
 ,   path = require('path')
 ,   Bones = require(global.__BonesPath__ || 'bones');
 
+var packageFile = path.join(global.__AppPath__, '/package.json');
+
+// Exit if no package.json file
+if (!fs.existsSync(packageFile)) return;
+
 // Get configured app name
-var config = fs.readFileSync(path.join(global.__AppPath__, '/package.json'), 'utf8');
+var config = fs.readFileSync(packageFile, 'utf8');
 if (config) config = JSON.parse(config);
 
 // Load CSS files
