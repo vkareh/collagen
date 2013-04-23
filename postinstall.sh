@@ -15,14 +15,16 @@ if [ ! -f collagen.json ]
 fi
 if [ ! -f index.js ]
     then
-        echo "var bones = require('bones');
+        echo "var collagen = require('collagen');
 
 // Add modules that need to load before your app here...
 require('../modules/collagen-log');
 
-bones.load(__dirname);
+collagen.load(__dirname);
 
-// Add modules that will override your app here..." > index.js
+// Add modules that will override your app here...
+
+collagen.start();" > index.js
 fi
 if [ ! -f package.json ]
     then

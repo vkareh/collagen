@@ -6,7 +6,7 @@ Bones.Command.options['collagen'] = {
     'description': 'Path to Collagen configuration file.',
     'default': function(options, config) {
         var files = config ? config.files : Bones.Command.options['files'].default();
-        return path.join(files, 'app', 'collagen.json');
+        return path.join(global.__AppPath__, 'collagen.json');
     }
 };
 
