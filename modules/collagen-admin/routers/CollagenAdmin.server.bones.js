@@ -4,7 +4,7 @@ routers.CollagenAdmin.prototype.routes = {
 }
 
 routers.CollagenAdmin.prototype.admin = function(task) {
-    if (!Collagen.user.authenticated) {
+    if (!Collagen.user.hasRole('admin')) {
         Collagen.messages.add({type: 'error', message: 'You are not an administrator'});
         return this.accessDenied();
     }

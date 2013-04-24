@@ -1,1 +1,1 @@
-require('bones').load(__dirname);
+require('collagen').load(__dirname);

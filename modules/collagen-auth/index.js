@@ -1,3 +1,3 @@
-var bones = require('bones');
+var collagen = require('collagen');
 require('bones-auth');
-bones.load(__dirname);
+collagen.load(__dirname);
