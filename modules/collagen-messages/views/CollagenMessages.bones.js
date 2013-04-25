@@ -21,10 +21,12 @@ view = views.View.extend({
             message = type;
             type = 'standard';
         }
-        $(selector).empty().append(templates.CollagenMessage({
+        message = templates.CollagenMessage({
             type: type,
             message: message
-        }));
+        });
+        if ($(selector).length) $(selector).empty().append(message);
+        else $('#main').prepend(message);
     },
     // Display error message from `sync` request
     error: function(model, resp) {
@@ -40,9 +42,11 @@ view = views.View.extend({
                 message = resp.toString();
             }
         }
-        $('#messages').empty().append(templates.CollagenMessage({
+        message = templates.CollagenMessage({
             type: 'error',
             message: message
-        }));
+        });
+        if ($('#messages').length) $('#messages').empty().append(message);
+        else $('#main').prepend(message);
     }
 });
