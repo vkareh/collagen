@@ -1,7 +1,7 @@
 var path = require('path')
 ,   fs = require('fs');
 
-commands['start'].options.collagen = {
+Bones.Command.options['collagen'] = {
     'title': 'collagen=[path]',
     'description': 'Path to Collagen configuration file.',
     'default': function(options, config) {
@@ -9,7 +9,7 @@ commands['start'].options.collagen = {
     }
 }
 
-commands['start'].augment({
+Bones.Command.augment({
     bootstrap: function(parent, plugin, callback) {
         parent.call(this, plugin, function() {
             try {
