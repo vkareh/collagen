@@ -1,4 +1,4 @@
-view = views.Collagen.extend({id: 'page'});
+view = views.Collagen.extend({id: 'static-page'});
 
 view.prototype.render = function() {
     // Display page title

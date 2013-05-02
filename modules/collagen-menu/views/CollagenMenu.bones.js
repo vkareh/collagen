@@ -2,6 +2,7 @@ view = views.View.extend({id: 'menu'});
 
 view.prototype.render = function() {
     $(this.el).empty().append(templates['CollagenMenu']({
+        stacked: this.options.stacked || false,
         menuType: this.options.type || 'pills',
         menuItems: _.sortBy(this.menuItems, 'weight')
     }));
