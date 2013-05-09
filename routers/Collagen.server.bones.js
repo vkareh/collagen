@@ -19,6 +19,7 @@ routers.Collagen.prototype.send = function(view, options) {
 
     // Add components to be sent to client
     var components = '', collagen = _.clone(Collagen);
+    collagen.version = time;
     delete collagen.config;
     _.each(collagen, function(component, name) {
         // Initialize views specified on each component
