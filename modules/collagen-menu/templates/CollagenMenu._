@@ -1,4 +1,4 @@
-<ul class="nav nav-<%= menuType %>">
+<ul class="nav nav-<%= menuType %> <%= stacked && 'nav-stacked' %>">
   <% _.each(menuItems, function(menuItem) { %>
     <li><a href="<%= menuItem.path %>"<%= menuItem.id ? ' id="' + menuItem.id + '"': '' %>><%= menuItem.label %></a></li>
   <% }); %>
