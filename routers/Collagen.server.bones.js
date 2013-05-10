@@ -57,13 +57,3 @@ routers.Collagen.prototype.send = function(view, options) {
                  '});'
     }));
 };
-
-routers.Collagen.prototype.accessDenied = function() {
-    this.res.status(403);
-    this.send(views.Error, {title: 'Access denied'});
-}
-
-routers.Collagen.prototype.notFound = function() {
-    this.res.status(404);
-    this.send(views.Error, {title: 'Page not found'});
-}

@@ -51,3 +51,13 @@ router.prototype.error = function(error) {
     if (typeof error == 'string') error = {};
     this.send(views.Error, _.isArray(error) ? error.shift() : error);
 }
+
+router.prototype.accessDenied = function() {
+    this.res.status(403);
+    this.send(views.Error, {title: 'Access denied'});
+}
+
+router.prototype.notFound = function() {
+    this.res.status(404);
+    this.send(views.Error, {title: 'Page not found'});
+}

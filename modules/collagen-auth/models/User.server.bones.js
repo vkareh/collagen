@@ -24,19 +24,3 @@ models.User.prototype.sync = function(method, model, options) {
     }
     options.success(model);
 }
-
-// Determine model ownership
-// -------------------------
-models.User.prototype.isOwner = function(model) {
-    return this.get('id') === model.get('user');
-}
-
-// Check user roles
-// ----------------
-models.User.prototype.hasRole = function(roles) {
-    var user = this;
-    if (!_.isArray(roles)) roles = [roles];
-    return _.any(roles, function(role) {
-        return _.contains(user.get('roles'), role);
-    });
-}

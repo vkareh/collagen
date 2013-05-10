@@ -35,28 +35,6 @@ var sync = function(method, model, options) {
     options.success(model);
 }
 
-// Determine user access to a model
-// --------------------------------
-models.Model.prototype.access = function(type, user) {
-    var model = this;
-    if (!user) user = Collagen.user;
-    if (!_.contains(['read', 'create', 'update', 'delete'], type)) return false;
-    if (model.permissions[type] === 'all') return true;
-    if (model.permissions[type] === 'owner' && user.isOwner(model)) return true;
-    if (user.hasRole(model.permissions[type])) return true;
-    if (user.hasRole('admin')) return true;
-    return false;
-}
-
-// Define model permissions
-// ------------------------
-models.Model.prototype.permissions = {
-    'read': 'all',
-    'create': ['authenticated user'],
-    'update': 'owner',
-    'delete': 'owner'
-}
-
 // Assign default `sync` method when necessary
 var register = models.Model.register;
 models.Model.register = function(server) {
