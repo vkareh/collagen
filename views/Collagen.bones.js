@@ -4,7 +4,7 @@ view.prototype.init = _.once(function() {
     // Instantiate global client-side routing view
     this.collagen = new views.App({model: this});
     // Force fresh cache on each application restart
-    $.ajaxSetup({data: {_version: Collagen.version}});
+    $.ajaxSetup({data: {_: Collagen.version}});
     return this;
 });
 
