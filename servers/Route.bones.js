@@ -20,10 +20,10 @@ if (config) config = JSON.parse(config);
 // Make core images available to application
 server = servers.Asset.augment({
     initialize: function(parent, app) {
+        parent.call(this, app);
         this.use('/assets/' + config.name + '/img', middleware['static'](
             path.join(__CollagenPath__, 'assets/img'),
             { maxAge: env === 'production' ? 3600 * 1000 : 0 } // 1 hour
         ));
-        parent.call(this, app);
     }
 });
