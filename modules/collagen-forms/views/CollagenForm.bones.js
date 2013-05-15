@@ -2,6 +2,8 @@ view = views.View.extend({
     tagName: 'form',
     initialize: function() {
         this.model = this.model || new models.CollagenForm();
+        _.bindAll(this, 'change');
+        this.model.bind('change', this.change, this);
         this.render();
         _.each(this.model.attributes, function(value, element) {
             $('#' + element).val(value);
@@ -14,10 +16,16 @@ view = views.View.extend({
         this.updateFormState();
     },
     render: function() {
-        var template = this.options.template || this.template;
+        var template = this.options.template || this.template || this.constructor.title;
         if (template && templates[template]) {
             $(this.el).empty().append(templates[template]());
         }
+    },
+    change: function(model, attributes) {
+        var self = this;
+        _.each(attributes.changes, function(changed, attr) {
+            if (changed) $(self.el).trigger('change:' + attr, self.model.get(attr));
+        });
     },
     events: {
         'change input,select,textarea': 'updateFormState',
