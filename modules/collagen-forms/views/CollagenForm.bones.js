@@ -80,7 +80,7 @@ view = views.View.extend({
         });
 
         // Clean-up empty elements
-        _.each(_.union(elements, _.keys(this.model.attributes)), function(element) {
+        _.each(elements, function(element) {
             if (!data[element]) {
                 delete data[element];
                 model.unset(element);
