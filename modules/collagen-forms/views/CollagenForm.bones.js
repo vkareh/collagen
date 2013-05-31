@@ -46,8 +46,8 @@ view = views.View.extend({
             }
         }
 
-        // Only look at form elements
-        $('input,select,textarea').each(function() {
+        // Only look at form elements inside form
+        $(this.el).find('input,select,textarea').each(function() {
             // Named fields are part of a group
             if ($(this).attr('name')) {
                 var name = $(this).attr('name');
@@ -62,6 +62,8 @@ view = views.View.extend({
                     } else {
                         data[name] = $(this).val();
                     }
+                } else {
+                    data[name] = $(this).val();
                 }
             } else {
                 var id = $(this).attr('id');
