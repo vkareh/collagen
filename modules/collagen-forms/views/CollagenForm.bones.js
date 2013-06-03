@@ -50,20 +50,27 @@ view = views.View.extend({
         $(this.el).find('input,select,textarea').each(function() {
             // Named fields are part of a group
             if ($(this).attr('name')) {
-                var name = $(this).attr('name');
+                var name = $(this).attr('name')
+                , value = $(this).val();
                 elements.push(name);
-                // Only set options that are selected
-                if ($(this).attr('checked')) {
-                    if ($(this).attr('type') === 'checkbox') {
+
+                switch ($(this).attr('type')) {
+                    case 'checkbox': 
                         if (!data[name]) {
                             data[name] = [];
                         }
-                        data[name].push($(this).val());
-                    } else {
-                        data[name] = $(this).val();
-                    }
-                } else {
-                    data[name] = $(this).val();
+                        if ($(this).attr('checked')) {
+                            data[name].push(value);
+                        }
+                        break;
+                    case 'radio':
+                        if ($(this).attr('checked')) {
+                            data[name] = value;
+                        }
+                        break;
+                    default:
+                        data[name] = value;
+                        break;
                 }
             } else {
                 var id = $(this).attr('id');
