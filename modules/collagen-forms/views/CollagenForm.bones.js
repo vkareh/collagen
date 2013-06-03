@@ -6,7 +6,7 @@ view = views.View.extend({
         this.model.bind('change', this.change, this);
         this.render();
         _.each(this.model.attributes, function(value, element) {
-            $('#' + element).val(value);
+            $('#' + element + ', textarea[name="' + element + '"], select[name="' + element + '"]').val(value);
             $('input[name="' + element + '"]').each(function() {
                 if ($(this).val() == value || (_.isArray(value) && _.contains(value, $(this).val()))) {
                     $(this).attr('checked', 'checked');
