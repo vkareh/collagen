@@ -1,21 +1,22 @@
-var vendor = servers.Route.prototype.assets.vendor;
-
-// Include Bootstrap JavaScript
-vendor.push(require.resolve('../assets/js/bootstrap.min.js'));
-
 var path = require('path')
 ,   fs = require('fs')
 ,   middleware = require('express')
 ,   env = process.env.NODE_ENV || 'development';
 
-var packageFile = path.join(global.__AppPath__, '/package.json');
+var vendor = servers.Route.prototype.assets.vendor;
 
-// Exit if no package.json file
-if (!fs.existsSync(packageFile)) return;
+// Include Bootstrap JavaScript
+vendor.push(require.resolve('../assets/js/bootstrap.min.js'));
 
-// Get configured app name
-var config = fs.readFileSync(packageFile, 'utf8');
-if (config) config = JSON.parse(config);
+// Include application JavaScript files
+var jsPath = path.join(global.__AppPath__, 'assets/js');
+fs.readdirSync(jsPath).forEach(function(file) {
+    vendor.push(require.resolve(path.join(jsPath, file)));
+});
+
+// Load data from packag.json file
+var config = require(path.join(global.__AppPath__, '/package.json'));
+if (!config) return;
 
 // Make core images available to application
 server = servers.Asset.augment({

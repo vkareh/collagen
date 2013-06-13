@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="generator" content="Collagen.js" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <link rel="shortcut icon" href="<%= favicon %>" type="image/x-icon" />
     <link rel="stylesheet" href="/assets/collagen/css/bootstrap.min.css?<%= version %>" media="screen" />
     <% _.each(css, function(file) { %>
-        <link rel="stylesheet" href="<%= file %>?<%= version %>" media="<%= /print/.test(file) ? 'print' : 'screen' %>" />
+      <link rel="stylesheet" href="<%= file %>?<%= version %>" media="<%= /print/.test(file) ? 'print' : 'screen' %>" />
     <% }); %>
     <script src="/assets/bones/all.js?<%= version %>"></script>
-    <% _.each(js, function(file) { %>
-        <script src="<%= file %>?<%= version %>"></script>
-    <% }); %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

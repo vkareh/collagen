@@ -2,28 +2,15 @@ var fs = require('fs')
 ,   path = require('path')
 ,   Bones = require(global.__BonesPath__ || 'bones');
 
-var packageFile = path.join(global.__AppPath__, '/package.json');
-
-// Exit if no package.json file
-if (!fs.existsSync(packageFile)) return;
-
-// Get configured app name
-var config = fs.readFileSync(packageFile, 'utf8');
-if (config) config = JSON.parse(config);
+// Load data from packag.json file
+var config = require(path.join(global.__AppPath__, '/package.json'));
+if (!config) return;
 
 // Load CSS files
 Bones.plugin.css = [];
 if (fs.existsSync(path.join(global.__AppPath__, '/assets/css'))) {
     fs.readdirSync(path.join(global.__AppPath__, '/assets/css')).forEach(function(name) {
         Bones.plugin.css.push(path.join('/assets', config.name, 'css', name));
-    });
-}
-
-// Load javascript files
-Bones.plugin.js = [];
-if (fs.existsSync(path.join(global.__AppPath__, '/assets/js'))) {
-    fs.readdirSync(path.join(global.__AppPath__, '/assets/js')).forEach(function(name) {
-        Bones.plugin.js.push(path.join('/assets', config.name, 'js', name));
     });
 }
 

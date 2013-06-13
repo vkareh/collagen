@@ -47,7 +47,6 @@ routers.Collagen.prototype.send = function(view, options) {
         version: time,
         favicon: Bones.plugin.favicon,
         css: Bones.plugin.css,
-        js: Bones.plugin.js,
         title: this.pageTitle(main),
         navbar: Collagen.config.navbar !== false ? (new views.CollagenNavBar()).render().html() : '',
         templates: Bones.plugin.templates,
