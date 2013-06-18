@@ -51,7 +51,7 @@ view = views.View.extend({
             // Named fields are part of a group
             if ($(this).attr('name')) {
                 var name = $(this).attr('name')
-                , value = $(this).val();
+                ,   value = $(this).val();
                 elements.push(name);
 
                 switch ($(this).attr('type')) {
@@ -120,3 +120,4 @@ view = views.View.extend({
         //throw new Error('No submit method defined');
     }
 });
+
