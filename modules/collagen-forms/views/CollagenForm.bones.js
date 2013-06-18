@@ -6,7 +6,7 @@ view = views.View.extend({
         this.model.bind('change', this.change, this);
         this.render();
         _.each(this.model.attributes, function(value, element) {
-            $('#' + element).val(value);
+            $('#' + element + ', textarea[name="' + element + '"], select[name="' + element + '"]').val(value);
             $('input[name="' + element + '"]').each(function() {
                 if ($(this).val() == value || (_.isArray(value) && _.contains(value, $(this).val()))) {
                     $(this).attr('checked', 'checked');
@@ -46,22 +46,31 @@ view = views.View.extend({
             }
         }
 
-        // Only look at form elements
-        $('input,select,textarea').each(function() {
+        // Only look at form elements inside form
+        $(this.el).find('input,select,textarea').each(function() {
             // Named fields are part of a group
             if ($(this).attr('name')) {
-                var name = $(this).attr('name');
+                var name = $(this).attr('name')
+                , value = $(this).val();
                 elements.push(name);
-                // Only set options that are selected
-                if ($(this).attr('checked')) {
-                    if ($(this).attr('type') === 'checkbox') {
+
+                switch ($(this).attr('type')) {
+                    case 'checkbox': 
                         if (!data[name]) {
                             data[name] = [];
                         }
-                        data[name].push($(this).val());
-                    } else {
-                        data[name] = $(this).val();
-                    }
+                        if ($(this).attr('checked')) {
+                            data[name].push(value);
+                        }
+                        break;
+                    case 'radio':
+                        if ($(this).attr('checked')) {
+                            data[name] = value;
+                        }
+                        break;
+                    default:
+                        data[name] = value;
+                        break;
                 }
             } else {
                 var id = $(this).attr('id');
