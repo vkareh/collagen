@@ -7,7 +7,9 @@ models.User.secret = function() {
 models.User.prototype.initialize = function() {
     // Set admin defaults
     if (Bones.plugin.config.adminParty) {
-        this.set(this.adminDefaults);
+        var user = this;
+        user.set({roles: _.union(_.without(user.get('roles'), 'anonymous user'), user.adminDefaults.roles)});
+        if (!user.get('displayName')) user.set({displayName: user.adminDefaults.displayName});
     }
 }
 
