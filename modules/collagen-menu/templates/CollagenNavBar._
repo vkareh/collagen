@@ -2,11 +2,13 @@
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="/"><%= title %></a>
+      <%= preMenuHTML %>
       <ul class="nav">
         <% _.each(menuItems, function(menuItem) { %>
           <li><a href="<%= menuItem.path %>"><%= menuItem.label %></a></li>
         <% }); %>
       </ul>
+      <%= postMenuHTML %>
     </div>
   </div>
 </div>
