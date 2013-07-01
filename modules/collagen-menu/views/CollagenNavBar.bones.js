@@ -6,11 +6,16 @@ view.prototype.menuItems = [{
     weight: -10
 }];
 
+view.prototype.preMenuHTML = '';
+view.prototype.postMenuHTML = '';
+
 view.prototype.render = function() {
     $(this.el).empty().append(templates['CollagenNavBar']({
         type: Collagen.config ? Collagen.config.navbar : 'static',
         title: Collagen.config ? Collagen.config.name : 'Collagen.js',
-        menuItems: _.sortBy(this.menuItems, 'weight')
+        menuItems: _.sortBy(this.menuItems, 'weight'),
+        preMenuHTML: _.result(this, 'preMenuHTML') || '',
+        postMenuHTML: _.result(this, 'postMenuHTML') || ''
     }));
     return this;
 }
