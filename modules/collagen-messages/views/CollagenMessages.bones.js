@@ -6,11 +6,16 @@ view = views.View.extend({
         return this.render();
     },
     render: function() {
-        var messages = '';
-        Collagen.messages.forEach(function(message) {
+        var messages = ''
+        ,   cb = function(message) {
             message = new models.CollagenMessage(message);
             messages += templates.CollagenMessage(message.attributes);
-        });
+        }
+        if (_.isArray(Collagen.messages)) {
+            _.each(Collagen.messages, cb);
+        } else {
+            Collagen.messages.forEach(cb);
+        }
         $('#messages').empty().append(messages);
         return this;
     },
