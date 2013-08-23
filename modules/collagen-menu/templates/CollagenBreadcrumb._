@@ -1,0 +1,9 @@
+<ul class="breadcrumb">
+  <% _.each(menuItems, function(menuItem) { %>
+    <% if (menuItem.active) { %>
+      <li class="active"><%= menuItem.label %></li>
+    <% } else { %>
+      <li><a href="<%= menuItem.path %>"<%= menuItem.id ? ' id="' + menuItem.id + '"': '' %>><%= menuItem.label %></a></li>
+    <% } %>
+  <% }); %>
+</ul>
