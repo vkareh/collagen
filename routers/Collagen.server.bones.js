@@ -54,7 +54,7 @@ routers.Collagen.prototype.send = function(view, options) {
         favicon: Bones.plugin.favicon,
         css: Bones.plugin.css,
         title: this.pageTitle(main),
-        navbar: Collagen.config.navbar !== false ? (new views.CollagenNavBar()).render().html() : '',
+        navbar: Collagen.config.navbar !== false ? (new views.CollagenNavBar(_.isString(Collagen.config.navbar) ? {type: Collagen.config.navbar} : Collagen.config.navbar)).render().html() : '',
         templates: Bones.plugin.templates,
         main: $(main.el).html(),
         startup: 'Bones.initialize(function(models, views, routers, templates) {' +
