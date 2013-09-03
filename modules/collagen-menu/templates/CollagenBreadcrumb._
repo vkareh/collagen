@@ -1,9 +1,10 @@
 <ul class="breadcrumb">
-  <% _.each(menuItems, function(menuItem) { %>
+  <% _.each(menuItems, function(menuItem, i) { %>
     <% if (menuItem.active) { %>
       <li class="active"><%= menuItem.label %></li>
     <% } else { %>
       <li><a href="<%= menuItem.path %>"<%= menuItem.id ? ' id="' + menuItem.id + '"': '' %>><%= menuItem.label %></a></li>
     <% } %>
+    <% if (i + 1 !== _.size(menuItems)) { %><span class="muted"><%= divider %></span><% } %>
   <% }); %>
 </ul>
