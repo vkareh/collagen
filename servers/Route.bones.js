@@ -10,7 +10,7 @@ vendor.push(require.resolve('../assets/js/bootstrap.min.js'));
 
 // Include application JavaScript files
 var jsPath = path.join(global.__AppPath__, 'assets/js');
-fs.readdirSync(jsPath).forEach(function(file) {
+fs.readdirSync(jsPath).reverse().forEach(function(file) {
     vendor.push(require.resolve(path.join(jsPath, file)));
 });
 
