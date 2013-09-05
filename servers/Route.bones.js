@@ -8,9 +8,14 @@ var vendor = servers.Route.prototype.assets.vendor;
 // Include Bootstrap JavaScript
 vendor.push(require.resolve('../assets/js/bootstrap.min.js'));
 
+// Read files alphabetically
+function alphabetical(a, b) {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+}
+
 // Include application JavaScript files
 var jsPath = path.join(global.__AppPath__, 'assets/js');
-fs.readdirSync(jsPath).reverse().forEach(function(file) {
+fs.readdirSync(jsPath).sort(alphabetical).forEach(function(file) {
     vendor.push(require.resolve(path.join(jsPath, file)));
 });
 
