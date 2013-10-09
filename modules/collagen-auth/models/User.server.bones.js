@@ -1,28 +1,14 @@
-var secret = Date.now().toString();
-// Note: this secret may not depend on the model instance!
-models.User.secret = function() {
-    return Bones.plugin.config.secret || Collagen.config.secret || secret;
-}
-
-models.User.prototype.initialize = function() {
-    // Set admin defaults
-    if (Bones.plugin.config.adminParty) {
-        var user = this;
-        user.set({roles: _.union(_.without(user.get('roles'), 'anonymous user'), user.adminDefaults.roles)});
-        if (!user.get('displayName')) user.set({displayName: user.adminDefaults.displayName});
-    }
-}
-
 // Default admin data
 models.User.prototype.adminDefaults = {
-    displayName: 'Admin',
-    roles: ['admin']
+    id: 'admin',
+    displayName: 'Administrator',
+    roles: ['authenticated user', 'admin', 'administrator']
 }
 
 // This method needs to be overridden...
 models.User.prototype.sync = function(method, model, options) {
-    if (this.id === 'admin') {
-        model.set(this.adminDefaults);
+    if (Collagen.config.adminParty) {
+        model.set(model.adminDefaults);
     }
     options.success(model);
 }

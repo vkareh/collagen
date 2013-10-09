@@ -1,15 +1,20 @@
-// @todo New users should automatically get a random hash as `id` for session/memory store purposes
-model = models.User.extend({
+model = models.Model.extend({
     defaults: {
-        id: null,
         roles: ['anonymous user'],
         language: 'en'
     },
+
+    // Boolean. Marks whether a User model has been authenticated. Do not
+    // trust this flag for critical client-side access protection as it can be
+    // modified by other javascript code.
+    authenticated: false,
+
     // Determine model ownership
     // -------------------------
     isOwner: function(model) {
         return this.get('id') === model.get('user');
     },
+
     // Check user roles
     // ----------------
     hasRole: function(roles) {

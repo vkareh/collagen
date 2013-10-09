@@ -8,9 +8,10 @@ view = views.View.extend({
     render: function() {
         var messages = '';
         Collagen.messages.forEach(function(message) {
-            message = new models.CollagenMessage(message);
-            messages += templates.CollagenMessage(message.attributes);
+            messages += templates.CollagenMessage(message.attributes || message);
+            Collagen.messages.remove(message);
         });
+        Collagen.messages.reset();
         $('#messages').empty().append(messages);
         return this;
     },
