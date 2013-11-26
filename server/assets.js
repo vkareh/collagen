@@ -6,10 +6,15 @@ var fs = require('fs')
 var config = require(path.join(global.__AppPath__, '/package.json'));
 if (!config) return;
 
+// Read files alphabetically
+function alphabetical(a, b) {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+}
+
 // Load CSS files
 Bones.plugin.css = [];
 if (fs.existsSync(path.join(global.__AppPath__, '/assets/css'))) {
-    fs.readdirSync(path.join(global.__AppPath__, '/assets/css')).forEach(function(name) {
+    fs.readdirSync(path.join(global.__AppPath__, '/assets/css')).sort(alphabetical).forEach(function(name) {
         Bones.plugin.css.push(path.join('/assets', config.name, 'css', name));
     });
 }
