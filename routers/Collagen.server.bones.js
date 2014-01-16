@@ -18,13 +18,19 @@ routers.Collagen.prototype.send = function(view, options) {
     main.render();
 
     // Add components to be sent to client
-    var components = '', collagen = _.clone(Collagen);
+    var collagen = _.clone(Collagen),
+        components = 'Collagen = {};';
+
     collagen.version = time;
     delete collagen.config;
-    _.each(collagen, function(component, name) {
+    _.each(collagen, function(c, name) {
+        // Add components to be re-hydrated on client
+        if (c.constructor.title != undefined) components += 'Collagen.' + name + ' = new models.' + c.constructor.title + '(' + JSON.stringify(collagen[name]) + ');';
+        else components += 'Collagen.' + name + ' = ' + (_.isObject(c) ? c : '"' + c + '"') + ';';
+
         // Initialize views specified on each component
-        if (component.view && _.isString(component.view)) {
-            components = 'new views.' + component.view + '({' + name + ':' + JSON.stringify(component) + '});';
+        if (c.view && _.isString(c.view)) {
+            components += 'new views.' + c.view + '({' + name + ':' + JSON.stringify(collagen[name]) + '});';
         }
     });
 
@@ -48,11 +54,11 @@ routers.Collagen.prototype.send = function(view, options) {
         favicon: Bones.plugin.favicon,
         css: Bones.plugin.css,
         title: this.pageTitle(main),
-        navbar: Collagen.config.navbar !== false ? (new views.CollagenNavBar()).render().html() : '',
+        navbar: Collagen.config.navbar !== false ? (new views.CollagenNavBar(_.isString(Collagen.config.navbar) ? {type: Collagen.config.navbar} : Collagen.config.navbar)).render().html() : '',
         templates: Bones.plugin.templates,
         main: $(main.el).html(),
         startup: 'Bones.initialize(function(models, views, routers, templates) {' +
-                     'Collagen = ' + JSON.stringify(collagen) + ';' + components +
+                     components + ';' +
                      'new views.' + main.constructor.title +'('+ o +').init().attach().activeLinks().scrollTop()' +
                  '});'
     }));

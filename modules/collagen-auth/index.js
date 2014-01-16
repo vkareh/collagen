@@ -1,3 +1,1 @@
-var collagen = require('collagen');
-require('bones-auth');
-collagen.load(__dirname);
+require('collagen').load(__dirname);

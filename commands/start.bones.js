@@ -13,7 +13,9 @@ Bones.Command.augment({
     bootstrap: function(parent, plugin, callback) {
         parent.call(this, plugin, function() {
             try {
-                Collagen.config = plugin.config.collagen = JSON.parse(fs.readFileSync(plugin.config.collagen));
+                var config = JSON.parse(fs.readFileSync(plugin.config.collagen));
+                // Allow override of Collagen configuration by passing in-line parameters
+                Collagen.config = _.defaults(_.omit(plugin.config, 'collagen'), config);
             } catch (e) {
                 console.error(e);
             }

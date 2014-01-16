@@ -11,7 +11,8 @@ view.prototype.postMenuHTML = '';
 
 view.prototype.render = function() {
     $(this.el).empty().append(templates['CollagenNavBar']({
-        type: Collagen.config ? Collagen.config.navbar : 'static',
+        color: this.options.color || 'inverse',
+        type: this.options.type || 'static',
         title: Collagen.config ? Collagen.config.name : 'Collagen.js',
         menuItems: _.sortBy(this.menuItems, 'weight'),
         preMenuHTML: _.result(this, 'preMenuHTML') || '',

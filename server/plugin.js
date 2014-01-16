@@ -32,3 +32,13 @@ require.extensions['.bones.js'] = function(module, filename) {
         Bones.plugin.add(module.exports, filename);
     }
 };
+
+// Cannot only add .bones.js to known extensions because path.ext() only looks
+// at what is after last '.' so we override '.js' handling.
+var _requirejs = require.extensions['.js'];
+require.extensions['.js'] = function(module, filename) {
+    if (/^.+\.bones\.js$/.test(filename) || _.contains(['routers', 'models', 'views', 'servers', 'commands'], _.last(filename.split('/'), 2)[0])) {
+        return require.extensions['.bones.js'](module,filename);
+    }
+    return _requirejs(module, filename);
+}
